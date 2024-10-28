@@ -69,4 +69,39 @@ Some Screenshots of this project are given below
 
 # Thank you for visiting my profile.
 
+- Create a new database
+CREATE DATABASE doctor_patient_portal;
 
+-- Create a new user (replace 'your_password' with a strong password)
+CREATE USER 'your_username'@'localhost' IDENTIFIED BY 'your_password';
+
+-- Grant all privileges on the database to the new user
+GRANT ALL PRIVILEGES ON doctor_patient_portal.* TO 'your_username'@'localhost';
+
+-- Flush privileges to ensure that the changes take effect
+FLUSH PRIVILEGES;
+
+CREATE TABLE patients (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT,
+    gender VARCHAR(10),
+    contact_info VARCHAR(100)
+);
+
+CREATE TABLE doctors (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    specialty VARCHAR(100),
+    contact_info VARCHAR(100)
+);
+
+# Database Configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/doctor_patient_portal
+spring.datasource.username=your_username
+spring.datasource.password=your_password
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA Configuration (if using Spring Data JPA)
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
